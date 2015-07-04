@@ -1,4 +1,4 @@
-<%= form_for(@professor) do |f| %>
+<%= form_for(@professor, :html => { :multipart => true }) do |f| %>
   <% if @professor.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@professor.errors.count, "error") %> prohibited this professor from being saved:</h2>
@@ -24,8 +24,12 @@
     <%= f.select(:department, ['Computer Science', 'Physics', 'Biology'], :multiple => true) %>
   </div>
   <div class="field">
-    <%= f.label :link %><br>
+    <%= f.label :link, "Link to CV or personal website" %><br>
     <%= f.text_field :link %>
+  </div>
+  <div>
+    <%= f.label :image, "Upload a profile picture" %><br>
+    <%= f.file_field :image %>
   </div>
   <div class="actions">
     <%= f.submit %>
