@@ -1,5 +1,6 @@
 class ProfessorsController < ApplicationController
   before_action :set_professor, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
   # GET /professors
   # GET /professors.json
@@ -25,7 +26,7 @@ class ProfessorsController < ApplicationController
   # POST /professors.json
   def create
     @professor = Professor.new(professor_params)
-
+    @professor.user_id = current_user.id
     respond_to do |format|
       if @professor.save
         format.html { redirect_to @professor, notice: 'Professor was successfully created.' }

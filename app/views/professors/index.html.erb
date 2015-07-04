@@ -14,7 +14,11 @@
   <tbody>
     <% @professors.each do |professor| %>
       <tr>
-        <td><%= image_tag professor.image.url, size: '250x350' %></td>
+        <td>
+          <%= link_to professor do %>
+            <%= image_tag professor.image.url, size: '250x350' %>
+          <% end %>
+        </td>
         <td><%= professor.name %></td>
         <td><%= professor.title %></td>
         <td><%= professor.department %></td>
@@ -28,5 +32,3 @@
 </table>
 
 <br>
-
-<%= link_to 'New Professor', new_professor_path %>

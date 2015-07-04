@@ -1,4 +1,4 @@
-source 'https://ruby.taobao.org'
+source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -41,3 +41,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 gem 'coffee-script-source', '1.8.0'
 
 gem 'paperclip', '~> 4.3.0'
+
+gem 'devise', '~> 3.5.1'
+
+gem 'bootstrap-sass', '~> 3.3.5'
