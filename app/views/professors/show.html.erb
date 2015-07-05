@@ -1,28 +1,77 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <%= image_tag @professor.image.url(:medium) %>
-</p>
+<div class="panel panel-default">
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-lg-4">
+				<p>
+				    <%= image_tag @professor.image.url(:medium) %>
+				</p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @professor.name %>
-</p>
+				<table class="table">
+					<tr>
+						<td><strong>Name:</strong></td>
+						<td><%= @professor.name %></td>
+					</tr>
 
-<p>
-  <strong>Title:</strong>
-  <%= @professor.title %>
-</p>
+					<tr>
+						<td><strong>Title:</strong></td>
+						<td><%= @professor.title %></td>
+					</tr>
 
-<p>
-  <strong>Department:</strong>
-  <%= @professor.department %>
-</p>
+					<tr>
+						<td><strong>Department:</strong></td>
+						<td><%= @professor.department %></td>
+					</tr>
 
-<p>
-  <strong>Link:</strong>
-  <%= @professor.link %>
-</p>
+					<tr>
+						<td><strong>Link:</strong></td>
+						<td><%= @professor.link %></td>
+					</tr>
+				</table>
 
-<%= link_to 'Edit', edit_professor_path(@professor) %> |
-<%= link_to 'Back', professors_path %>
+				<div class="btn-group">
+					<%= link_to "Edit", edit_professor_path(@professor), class: "btn btn-info" %>
+					<%= link_to "Delete", @professor, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-info" %>
+					<%= link_to 'Back', root_path, class: "btn btn-info" %>
+				</div>
+
+				<%= link_to "Write a review", new_professor_review_path(@professor), class: "btn btn-primary" %>
+			</div>
+
+			<div class="col-lg-7 col-lg-offset-1">
+				<div class="review_title">Reviews for <%= @professor.name %></div>
+				<% if !@professor.reviews.blank? %>
+					<% @professor.reviews.each do |review| %>
+					  <div>
+					    <strong>Rating:</strong><br>
+					    <%= review.rating %>
+					  </div>
+					 
+					  <div>
+					    <strong>Class:</strong><br>
+					    <%= review.classname %>
+					  </div>
+
+					  <div>
+					    <strong>Comment:</strong><br>
+					    <%= review.comment %>
+					  </div>
+
+					  <div>
+					  	<%= link_to "Edit", edit_professor_review_path(@professor, review) %>
+					  	<%= link_to "Delete", professor_review_path(@professor, review), method: :delete, data: {confirm: "Are you sure?"} %>
+					  </div>
+					<% end %>
+				<% else %>
+					<div>
+						<h4>No reviews just yet. Would you like to <%= link_to "add one", new_professor_review_path(@professor) %>?</h4>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+

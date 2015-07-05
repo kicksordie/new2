@@ -11,27 +11,27 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group", style="width: 25%">
     <%= f.label :name, "Name" %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group", style="width: 25%">
     <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :department, "Department(s)" %><br>
-    <%= f.select(:department, ['Computer Science', 'Physics', 'Biology'], :multiple => true) %>
+  <div class="form-group", style="width: 25%">
+    <%= f.label :department, "Department" %><br>
+    <%= f.select(:department, ['Computer Science', 'Physics', 'Biology'], :multiple => true, class: "form-control") %>
   </div>
-  <div class="field">
+  <div class="form-group", style="width: 25%">
     <%= f.label :link, "Link to CV or personal website" %><br>
-    <%= f.text_field :link %>
+    <%= f.text_field :link, class: "form-control" %>
   </div>
-  <div>
+  <div class="form-group">
     <%= f.label :image, "Upload a profile picture" %><br>
     <%= f.file_field :image %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class: "btn btn-default" %>
   </div>
 <% end %>

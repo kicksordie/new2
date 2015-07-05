@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150704132926) do
+ActiveRecord::Schema.define(version: 20150705124522) do
+
+  create_table "evaluations", force: true do |t|
+    t.integer  "rating"
+    t.string   "class"
+    t.text     "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "professors", force: true do |t|
     t.string   "name"
@@ -26,6 +34,17 @@ ActiveRecord::Schema.define(version: 20150704132926) do
     t.datetime "image_updated_at"
     t.integer  "user_id"
   end
+
+  create_table "reviews", force: true do |t|
+    t.integer  "rating"
+    t.string   "classname"
+    t.text     "comment"
+    t.integer  "professor_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "reviews", ["professor_id"], name: "index_reviews_on_professor_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
