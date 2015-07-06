@@ -1,0 +1,27 @@
+<% if !user_signed_in? %>
+  <div class="jumbotron">
+    <h1>Your Favorite Bi-Co Professors Being Reviewed</h1>
+    <p>Join us to set up profiles or write reviews for your professors!</p>
+    <p><%= link_to "Sign Up To Write A Review", new_user_registration_path, class: "btn btn-primary btn-lg" %></p>
+  </div>
+<% end %>
+
+<div>
+  <h2 class="featured">Search Results</h2>
+</div>
+
+<div class="row">
+  <% @professors.each do |professor| %>
+    <div class="col-sm-6 col-md-3">
+      <div class="images">
+        <%= link_to professor do %>
+          <%= image_tag professor.image.url, size: "250x270" %>
+        <% end %>
+        <div class="image-description">
+          <%= professor.name %><br>
+          <%= professor.department %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

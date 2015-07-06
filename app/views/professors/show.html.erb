@@ -41,10 +41,10 @@
 
 			<div class="col-lg-7 col-lg-offset-1">
 				<div class="review_title">Reviews for <%= @professor.name %></div>
-				<% if !@professor.reviews.blank? %>
-					<% @professor.reviews.each do |review| %>
+				<% if !@reviews.blank? %>
+					<% @reviews.each do |review| %>
 					  <div><strong>Rating:</strong></div>
-					  <div id="star-rating", data-score=<%= review.rating %>></div>
+					  <div class="star-rating", data-score=<%= review.rating %>></div>
 
 					  <div>
 					    <strong>Class:</strong><br>
@@ -73,7 +73,7 @@
 
 
 <script>
-	$('#star-rating').raty({
+	$('.star-rating').raty({
 		readOnly: true,
 		path: '/assets/',
 		precision: true,

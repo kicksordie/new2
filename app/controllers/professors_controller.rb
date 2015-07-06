@@ -5,12 +5,21 @@ class ProfessorsController < ApplicationController
   # GET /professors
   # GET /professors.json
   def index
-    @professors = Professor.all
+    @professors = Professor.all.order("created_at DESC")
+  end
+
+  def search
+    if params[:search]
+      @professors = Professor.search(params[:search])
+    else
+      @professors = Professor.all
+    end
   end
 
   # GET /professors/1
   # GET /professors/1.json
   def show
+    @reviews = @professor.reviews.order("created_at DESC")
   end
 
   # GET /professors/new
