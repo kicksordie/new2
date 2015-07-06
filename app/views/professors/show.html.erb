@@ -26,7 +26,7 @@
 
 					<tr>
 						<td><strong>Link:</strong></td>
-						<td><%= @professor.link %></td>
+						<td><%= link_to @professor.link, @professor.link %></td>
 					</tr>
 				</table>
 
@@ -43,11 +43,9 @@
 				<div class="review_title">Reviews for <%= @professor.name %></div>
 				<% if !@professor.reviews.blank? %>
 					<% @professor.reviews.each do |review| %>
-					  <div>
-					    <strong>Rating:</strong><br>
-					    <%= review.rating %>
-					  </div>
-					 
+					  <div><strong>Rating:</strong></div>
+					  <div id="star-rating", data-score=<%= review.rating %>></div>
+
 					  <div>
 					    <strong>Class:</strong><br>
 					    <%= review.classname %>
@@ -74,4 +72,13 @@
 </div>
 
 
-
+<script>
+	$('#star-rating').raty({
+		readOnly: true,
+		path: '/assets/',
+		precision: true,
+		score: function() {
+			return $(this).attr('data-score');
+		}
+	});
+</script>
