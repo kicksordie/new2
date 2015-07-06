@@ -8,6 +8,7 @@ class ReviewsController < ApplicationController
 
   def create
     @review = @professor.reviews.create(review_params)
+    @review.user_id = current_user.id
     if @review.save
     	redirect_to @professor
     else

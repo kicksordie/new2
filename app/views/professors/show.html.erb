@@ -42,6 +42,9 @@
 			<div class="col-lg-7 col-lg-offset-1">
 				<div class="review_title">Reviews for <%= @professor.name %></div>
 				<% if !@reviews.blank? %>
+					<div><%= pluralize(@reviews.count, "review") %></div>
+					<div class="star-rating", data-score=<%= @avg_score %>></div>
+					<hr>
 					<% @reviews.each do |review| %>
 					  <div><strong>Rating:</strong></div>
 					  <div class="star-rating", data-score=<%= review.rating %>></div>
@@ -78,6 +81,9 @@
 		path: '/assets/',
 		precision: true,
 		score: function() {
+			return $(this).attr('data-score');
+		},
+		hints: function() {
 			return $(this).attr('data-score');
 		}
 	});

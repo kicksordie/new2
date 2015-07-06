@@ -9,10 +9,11 @@ class ProfessorsController < ApplicationController
   end
 
   def search
+    #@professors = Professor.search(params[:search])
     if params[:search]
       @professors = Professor.search(params[:search])
     else
-      @professors = Professor.all
+      @professor = Professor.all
     end
   end
 
@@ -20,6 +21,7 @@ class ProfessorsController < ApplicationController
   # GET /professors/1.json
   def show
     @reviews = @professor.reviews.order("created_at DESC")
+    @avg_score = @reviews.average(:rating).round(1)
   end
 
   # GET /professors/new
