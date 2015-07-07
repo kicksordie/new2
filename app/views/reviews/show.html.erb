@@ -1,0 +1,37 @@
+<div class="col-lg-6">
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<div style="padding-bottom: 10px">
+				<span><strong>Rating: </strong><span class="star-rating", data-score=<%= @review.rating %>, style="padding-right: 15px"> </span></span>
+				<span><strong>Class: </strong><%= @review.classname %></span>
+			</div>
+			<%= @review.comment %>
+			<div style="padding-top: 7px"><i><%= @review.created_at %></i></div>
+		</div>
+
+		<div class="panel-footer">
+			<div class="btn-group">
+				<%= link_to 'Edit', edit_professor_review_path(@professor, @review), class: "btn btn-info" %>
+				<%= link_to 'Delete', professor_review_path(@professor, @review), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-info" %>
+				<%= link_to 'Back', @professor, class: "btn btn-info" %>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	$(".star-rating").raty({
+		readOnly: true,
+		path: "/assets/",
+		precision: true,
+		score: function() {
+			return $(this).attr("data-score");
+		},
+		hints: function() {
+			return $(this).attr("data-score");
+		}
+	})
+</script>
+
+
+

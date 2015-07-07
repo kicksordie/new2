@@ -16,13 +16,37 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+
 body {
 	background-color: #269CEB;
+}
+
+select {
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  height: 34px; 
+  background-color: white;
+  option {
+    text-align: center;
+  }
+  width: 30%;
 }
 
 .featured {
 	color: #C9E0F5;
 	margin-bottom: 35px;
+}
+
+input {
+  button {
+    height: 34px;
+    background-color: white;
+    vertical-align: middle;
+  }
+}
+
+.icon {
+  padding-right: 3px;  
 }
 
 .images {
@@ -45,12 +69,18 @@ body {
 	border-right:3px solid white;
 }
 
-.review_title {
+.image-show {
+  width: 330px;
+  border: 2px solid #bce8f1;
+  border-radius: 4px;
+}
+
+.panel-heading {
   font-size: 250%;
   font-weight: bold;
 }
 
-.table {
-  border-top:0px;
-  border-bottom:1px solid #dddddd;
+.star-rating {
+  font-size: 50%;
 }
+

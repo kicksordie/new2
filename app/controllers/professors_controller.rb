@@ -1,11 +1,11 @@
 class ProfessorsController < ApplicationController
   before_action :set_professor, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :search, :show]
 
   # GET /professors
   # GET /professors.json
   def index
-    @professors = Professor.all.order("created_at DESC")
+    @professors = Professor.all.order("name")
   end
 
   def search
@@ -13,15 +13,19 @@ class ProfessorsController < ApplicationController
     if params[:search]
       @professors = Professor.search(params[:search])
     else
-      @professor = Professor.all
+      @professor = Professor.all.order("name")
     end
   end
 
   # GET /professors/1
   # GET /professors/1.json
   def show
-    @reviews = @professor.reviews.order("created_at DESC")
-    @avg_score = @reviews.average(:rating).round(1)
+    @reviews = @professor.reviews.order("created_at DESC").page params[:page]
+    if !@professor.reviews.blank?
+      @avg_score = @professor.reviews.average(:rating).round(1)
+    else
+      @avg_score = 0
+    end
   end
 
   # GET /professors/new

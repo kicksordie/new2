@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
 	before_action :set_professor
-	before_action :set_review, only: [:edit, :update, :destroy]
+	before_action :set_review, except: [:new, :create]
 	before_action :authenticate_user!
 
   def new
@@ -14,6 +14,9 @@ class ReviewsController < ApplicationController
     else
     	render 'new'
     end
+  end
+
+  def show
   end
 
   def edit
