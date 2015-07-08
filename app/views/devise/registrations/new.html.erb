@@ -28,7 +28,9 @@
 
   <div class="form-group", style="width: 25%">
     <%= f.submit "Sign up", class: "btn btn-default" %>
+    <%- if controller_name != 'sessions' %>
+      <%= link_to "Sign in", new_session_path(resource_name), class: "btn btn-default" %><!-- <br /> -->
+    <% end -%>
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>

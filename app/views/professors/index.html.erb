@@ -7,7 +7,7 @@
 <% end %>
 
 <div>
-  <h2 class="featured">Featured Professors of the Day</h2>
+  <h2 class="featured">List of all Professors</h2>
 </div>
 
 <div class="row">
@@ -17,7 +17,7 @@
         <%= link_to professor do %>
           <%= image_tag professor.image.url, size: "250x270" %>
         <% end %>
-        <div class="image-description">
+        <div class="image-description", vertical-align:"middle">
           <%= professor.name %><br>
           <%= professor.department %>
         </div>

@@ -2,6 +2,7 @@ class ReviewsController < ApplicationController
 	before_action :set_professor
 	before_action :set_review, except: [:new, :create]
 	before_action :authenticate_user!
+  before_filter :authorize, only: [:edit, :destroy]
 
   def new
   end
@@ -34,6 +35,16 @@ class ReviewsController < ApplicationController
   	@review.destroy
   	redirect_to @professor
   end
+
+  protected
+
+    def authorize
+      unless admin?
+        flash[:error] = "Unauthorized Access"
+        redirect_to professor_review_path(@professor, @review)
+        false
+      end
+    end
  
   private
 

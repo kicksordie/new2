@@ -23,7 +23,7 @@
 
   <div class="form-group">
     <%= f.label :department, "Department" %><br>
-    <%= f.select(:department, ['Computer Science', 'Physics', 'Biology', 'Growth and Structure of Cities', 'English']) %>
+    <%= f.select(:department, @dept_list) %>
   </div>
 
   <div class="form-group", style="width: 30%">
@@ -37,6 +37,7 @@
   </div>
 
   <span class="actions">
-  <%= f.submit class: "btn btn-default" %>
+    <%= f.submit class: "btn btn-success" %>
+    <%= link_to 'Back', root_path, class: "btn btn-default" %>
   </span>
 <% end %>

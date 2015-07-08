@@ -1,6 +1,9 @@
 class ProfessorsController < ApplicationController
+  before_action :department_list, only: [:new, :edit]
   before_action :set_professor, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :search, :show]
+  before_filter :authorize, only: [:edit, :destroy]
+
 
   # GET /professors
   # GET /professors.json
@@ -77,6 +80,16 @@ class ProfessorsController < ApplicationController
     end
   end
 
+  protected
+
+    def authorize
+      unless admin?
+        flash[:error] = "Unauthorized Access"
+        redirect_to @professor
+        false
+      end
+    end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_professor
@@ -86,5 +99,20 @@ class ProfessorsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def professor_params
       params.require(:professor).permit(:name, :title, :department, :link, :image)
+    end
+
+    def department_list
+      @dept_list = ['Africana Studies', 'Anthropology', 'Arabic', 'Archaeology', 'Architecture',
+        'Arts Program – Creative Writing', 'Arts Program – Dance', 'Arts Program – Fine Arts', 
+        'Arts Program - Music', 'Arts Program - Theater', 'Astronomy', 'Biology',
+        'Biochemistry & Molecular Biology', 'Chemistry', 'Child and Family Studies','Classics', 
+        'Comparative Literature', 'Computer Science', 'East Asian Languages and Cultures', 'Economics', 
+        'Education', 'English', 'Environmental Studies', 'Film Studies', 'French', 'Gender and Sexuality', 
+        'Geology', 'German', 'Greek, Latin and Classical Studies', 'Growth and Structure of Cities',
+        'Hebrew and Judaic Studies', 'History', 'History of Art', 'International Studies', 'Italian', 
+        'Latin-American Studies', 'Linguistics', 'Mathematics', 'Mathematics & Statistics', 
+        'Middle Eastern Studies', 'Philosophy','Physics','Political Science', 'Psychology', 'Religion',
+        'Romance Languages', 'Russian', 'Social Work and Social Research', 'Sociology','Spanish'
+      ]
     end
 end
