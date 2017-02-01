@@ -49,3 +49,11 @@ gem 'bootstrap-sass', '~> 3.3.5'
 gem 'searchkick', '~> 0.9.0'
 
 gem 'kaminari', '~> 0.16.3'
+
+group :production, :staging do
+  gem "pg"
+end
+
+group :development, :test do
+  gem "sqlite3-ruby"
+end
